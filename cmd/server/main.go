@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"log/slog"
 	"os"
 	"os/signal"
 	"syscall"
@@ -10,8 +10,9 @@ import (
 	"github.com/zlietapki/microboiler_api_contracts/pkg/pb/v1"
 	"github.com/zlietapki/microboiler_grpc_server/internal/config"
 	"github.com/zlietapki/microboiler_grpc_server/internal/grpc_handler"
+	"github.com/zlietapki/microboiler_grpc_server/internal/repository"
 	"github.com/zlietapki/microboiler_grpc_server/internal/usecase"
-	"github.com/zlietapki/microboiler_grpc_server/pkg/grpc_server"
+	"github.com/zlietapki/microboiler_grpc_server/pkg/grpcserver"
 	"google.golang.org/grpc"
 )
 
@@ -20,16 +21,17 @@ func main() {
 
 	cfg := config.New()
 
-	uc := usecase.New()
+	repo := repository.New()
+	uc := usecase.New(repo)
 
 	grpcHandlers := grpc_handler.NewHandler(uc)
 
-	grpcServer := grpc_server.NewGRPCServer(cfg.GRPCListen, func(s *grpc.Server) {
+	grpcServer := grpcserver.NewGRPCServer(cfg.GRPCListen, func(s *grpc.Server) {
 		pb.RegisterExampleServer(s, grpcHandlers)
 	})
 
 	grpcServerErrCh := grpcServer.Start()
-	log.Printf("gRPC listen on: %s", cfg.GRPCListen)
+	slog.Info("gRPC listening", "addr", cfg.GRPCListen)
 	defer grpcServer.Stop()
 
 	signals := make(chan os.Signal, 1)

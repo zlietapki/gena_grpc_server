@@ -24,6 +24,7 @@ tasks:
     desc: Run linter
     cmds:
       - go fmt ./...
+      - go vet ./...
 
   generate:
     desc: Generate code

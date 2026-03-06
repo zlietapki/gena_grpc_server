@@ -1,8 +1,8 @@
-package grpc_server
+package grpcserver
 
 import (
 	"context"
-	"log"
+	"log/slog"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -13,7 +13,7 @@ func recoveryInterceptor() grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp any, err error) {
 		defer func() {
 			if r := recover(); r != nil {
-				log.Printf("panic recovered in %s: %v", info.FullMethod, r)
+				slog.Error("panic recovered", "method", info.FullMethod, "panic", r)
 				err = status.Errorf(codes.Internal, "internal error")
 			}
 		}()
