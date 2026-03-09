@@ -28,8 +28,9 @@ pkg/
 ### Run
 
 ```bash
-cp .env.example .env
 task run
+# or
+docker compose up
 ```
 
 ### Build
@@ -66,5 +67,3 @@ grpcurl -plaintext -d @ localhost:8888 api.proto.Example.Hello <<EOM
 }
 EOM
 ```
-
-[//]: # (end)
