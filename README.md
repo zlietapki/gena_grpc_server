@@ -1,10 +1,17 @@
-[//]: # (start name:some)
+[//]: # (start name:common)
+microboiler
+===========
 
-# microboiler_grpc_server
+Project boilerplate
+
+[//]: # (start name:project type:add)
+
+grpc_server
+-----------
 
 Boilerplate gRPC microservice template. Clean architecture, standard Go project layout.
 
-## Structure
+### Structure
 
 ```
 cmd/server/          — entrypoint
@@ -16,38 +23,36 @@ internal/
   grpc_handler/      — gRPC transport handlers
 pkg/
   grpcserver/        — gRPC server + interceptors
-api/                 — proto/contract references
 ```
 
-## Run
+### Run
 
 ```bash
 cp .env.example .env
 task run
 ```
 
-## Build
+### Build
 
 ```bash
 task build
 # binary: bin/server
 ```
 
-## Test / Lint
+### Test / Lint
 
 ```bash
 task test
 task lint
 ```
 
-## Health check
+### Health check
 
 ```bash
 grpcurl -plaintext localhost:8888 grpc.health.v1.Health/Check
 ```
 
-Example requests
-----------------
+### Example requests
 
 ```shell
 grpcurl -plaintext localhost:8888 list
