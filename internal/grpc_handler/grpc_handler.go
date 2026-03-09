@@ -1,8 +1,8 @@
 package grpc_handler
 
 import (
+	"github.com/zlietapki/boilerplate/internal/domain"
 	"github.com/zlietapki/microboiler_api_contracts/pkg/pb/v1"
-	"github.com/zlietapki/microboiler_grpc_server/internal/domain"
 )
 
 type Handler struct {
@@ -10,7 +10,7 @@ type Handler struct {
 	uc domain.IUsecase
 }
 
-func NewHandler(uc domain.IUsecase) *Handler {
+func New(uc domain.IUsecase) *Handler {
 	return &Handler{
 		uc: uc,
 	}

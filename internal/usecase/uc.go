@@ -1,15 +1,15 @@
 package usecase
 
-import "github.com/zlietapki/microboiler_grpc_server/internal/domain"
+import "github.com/zlietapki/boilerplate/internal/domain"
 
-var _ domain.IUsecase = (*UC)(nil) // compile-time check
+var _ domain.IUsecase = (*Usecase)(nil) // compile-time check
 
-type UC struct {
+type Usecase struct {
 	repo domain.IRepository
 }
 
-func New(repo domain.IRepository) *UC {
-	return &UC{
+func New(repo domain.IRepository) *Usecase {
+	return &Usecase{
 		repo: repo,
 	}
 }

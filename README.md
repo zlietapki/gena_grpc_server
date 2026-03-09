@@ -1,3 +1,5 @@
+[//]: # (start name:some)
+
 # microboiler_grpc_server
 
 Boilerplate gRPC microservice template. Clean architecture, standard Go project layout.
@@ -41,5 +43,23 @@ task lint
 ## Health check
 
 ```bash
-grpcurl -plaintext localhost:50051 grpc.health.v1.Health/Check
+grpcurl -plaintext localhost:8888 grpc.health.v1.Health/Check
 ```
+
+Example requests
+----------------
+
+```shell
+grpcurl -plaintext localhost:8888 list
+grpcurl -plaintext localhost:8888 list api.proto.Example
+grpcurl -plaintext localhost:8888 describe api.proto.Example.Hello
+grpcurl -plaintext localhost:8888 describe .api.proto.HelloReq
+
+grpcurl -plaintext -d @ localhost:8888 api.proto.Example.Hello <<EOM
+{
+  "name": "ZlieTapki"
+}
+EOM
+```
+
+[//]: # (end)

@@ -7,5 +7,12 @@ import (
 )
 
 func (h *Handler) Hello(ctx context.Context, req *pb.HelloReq) (*pb.HelloRes, error) {
-	return &pb.HelloRes{}, nil
+	resp, err := h.uc.Hello(ctx, req.Name)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.HelloRes{
+		Hello: resp,
+	}, nil
 }

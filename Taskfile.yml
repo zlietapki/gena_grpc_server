@@ -1,3 +1,4 @@
+# start name:common
 version: '3'
 
 tasks:
@@ -6,12 +7,12 @@ tasks:
       - task: build
 
   build:
-    desc: Build the gRPC server
+    desc: Build project
     cmds:
       - go build -o bin/server ./cmd/server
 
   run:
-    desc: Run the gRPC server
+    desc: Run project
     cmds:
       - go run ./cmd/server
 
@@ -25,8 +26,4 @@ tasks:
     cmds:
       - go fmt ./...
       - go vet ./...
-
-  generate:
-    desc: Generate code
-    cmds:
-      - go generate ./...
+# end

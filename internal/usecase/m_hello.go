@@ -5,10 +5,8 @@ import (
 	"fmt"
 )
 
-func (u UC) Hello(ctx context.Context, name string) (string, error) {
-	res := fmt.Sprintf("Hello: %s\n", name)
-
-	//u.repo.
+func (u Usecase) Hello(ctx context.Context, name string) (string, error) {
+	res := fmt.Sprintf("Hello: %s", name)
 
 	return res, nil
 }

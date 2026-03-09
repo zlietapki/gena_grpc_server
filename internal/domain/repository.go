@@ -1,5 +1,7 @@
+// start name:all
 package domain
 
 type IRepository interface {
-	// stub: add methods per domain entity
+	//start name:repo_methods type:add
+	//	start name:post_repo_methods
 }

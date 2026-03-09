@@ -18,7 +18,7 @@ type Server struct {
 	opts       []grpc.ServerOption
 }
 
-func NewGRPCServer(listen string, addHandler addHandlerFunc, opts ...grpc.ServerOption) *Server {
+func New(listen string, addHandler addHandlerFunc, opts ...grpc.ServerOption) *Server {
 	defaultOpts := []grpc.ServerOption{
 		grpc.ChainUnaryInterceptor(recoveryInterceptor()),
 	}

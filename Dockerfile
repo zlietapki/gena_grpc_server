@@ -1,3 +1,4 @@
+# start name:all
 # Builder stage
 FROM golang:1.26.1-alpine3.23 AS builder
 
@@ -23,3 +24,4 @@ COPY .env.example .env.example
 EXPOSE 8888
 
 CMD ["./server"]
+# end

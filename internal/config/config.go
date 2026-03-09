@@ -1,16 +1,27 @@
+// start name:top
 package config
 
-import "os"
+import (
+	"os"
+
+	"github.com/joho/godotenv"
+)
 
 type Config struct {
+	//start name:struct type:add
 	GRPCListen string
-	Env        string
+	//start name:body
+	Env string
 }
 
 func New() *Config {
+	godotenv.Load()
+
 	return &Config{
+		//start name:return type:add
 		GRPCListen: getEnv("GRPC_LISTEN", ":8888"),
-		Env:        getEnv("ENV", "local"),
+		//start name:post_return
+		Env: getEnv("ENV", "local"),
 	}
 }
 
