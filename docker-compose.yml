@@ -1,7 +1,10 @@
+# start name:common
 services:
   server:
     build: .
     ports:
+      # start name:ports type:add
       - "8888:8888"
+    # start name:post_ports
     env_file:
       - .env

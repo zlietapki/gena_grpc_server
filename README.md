@@ -4,6 +4,23 @@ microboiler
 
 Project boilerplate
 
+Run
+---
+
+```bash
+task run
+# or
+docker compose up; docker-compose rm --force --stop --volumes
+```
+
+Build
+-----
+
+```bash
+task build
+# binary: bin/server
+```
+
 [//]: # (start name:project type:add)
 
 grpc_server
@@ -23,21 +40,6 @@ internal/
   grpc_handler/      — gRPC transport handlers
 pkg/
   grpcserver/        — gRPC server + interceptors
-```
-
-### Run
-
-```bash
-task run
-# or
-docker compose up
-```
-
-### Build
-
-```bash
-task build
-# binary: bin/server
 ```
 
 ### Test / Lint
