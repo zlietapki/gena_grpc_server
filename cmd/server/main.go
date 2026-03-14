@@ -8,23 +8,28 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/zlietapki/boilerplate/internal/config"
-	"github.com/zlietapki/boilerplate/internal/grpc_handler"
-	"github.com/zlietapki/boilerplate/internal/repository"
-	"github.com/zlietapki/boilerplate/internal/usecase"
-	"github.com/zlietapki/boilerplate/pkg/grpcserver"
 	"github.com/zlietapki/microboiler_api_contracts/pkg/pb/v1"
 	"google.golang.org/grpc"
+
+	"github.com/zlietapki/gena/internal/config"
+	"github.com/zlietapki/gena/internal/grpc_handler"
+	"github.com/zlietapki/gena/internal/usecase"
+	"github.com/zlietapki/gena/pkg/grpcserver"
 )
 
 // start name:main
 func main() {
 	cfg := config.New()
 
-	repo := repository.New()
-	uc := usecase.New(repo)
+	// start name:usecase_deps type:add
 
-	//start name:handler type:add
+	// start name:new_usecase
+	uc := usecase.New(usecase.Depends{
+		// start name:usecase_deps_objs type:add
+		// start name:post_usecase_deps_objs
+	})
+
+	//start name:after_usecase type:add
 	grpcHandler := grpc_handler.New(uc)
 
 	grpcServer := grpcserver.New(cfg.GRPCListen, func(s *grpc.Server) {
@@ -42,9 +47,10 @@ func main() {
 	select {
 	case <-signals:
 
-	//start name:signals_handler type:add
+	//start name:signals_select type:add
 	case err := <-grpcServerErrCh:
 		panic("gRPC server:" + err.Error())
-		// start name:bottom
+		//start name:post_signals_select
 	}
+	// start name:bottom
 }

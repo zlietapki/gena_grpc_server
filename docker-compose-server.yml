@@ -3,7 +3,7 @@ services:
   server:
     build: .
     ports:
-      # start name:ports type:add
+      # start name:ports type:merge
       - "8888:8888"
     # start name:post_ports
     env_file:

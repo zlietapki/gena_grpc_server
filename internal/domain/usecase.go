@@ -2,7 +2,9 @@
 package domain
 
 //start name:imports type:merge
-import "context"
+import (
+	"context"
+)
 
 // start name:usecase
 type IUsecase interface {

@@ -1,8 +1,9 @@
 package grpc_handler
 
 import (
-	"github.com/zlietapki/boilerplate/internal/domain"
 	"github.com/zlietapki/microboiler_api_contracts/pkg/pb/v1"
+
+	"github.com/zlietapki/gena/internal/domain"
 )
 
 type Handler struct {

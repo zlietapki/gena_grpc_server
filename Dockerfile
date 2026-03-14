@@ -1,4 +1,4 @@
-# start name:all
+#start name:common
 # Builder stage
 FROM golang:1.26.1-alpine3.23 AS builder
 
@@ -19,9 +19,8 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /app
 
 COPY --from=builder /app/server .
-COPY .env .env
 
 CMD ["./server"]
 
-# start name:expose type:add
+# start name:expose type:merge
 EXPOSE 8888

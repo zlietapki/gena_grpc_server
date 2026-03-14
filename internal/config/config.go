@@ -1,34 +1,32 @@
 // start name:top
 package config
 
+// start name:import type:merge
 import (
+	"log/slog"
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/kelseyhightower/envconfig"
 )
 
+// start name:post_import
 type Config struct {
-	//start name:struct type:add
-	GRPCListen string
-	//start name:body
-	Env string
+	Env string `envconfig:"ENV"`
+	//start name:conf type:add
+	GRPCListen string `envconfig:"GRPC_LISTEN"`
+	//start name:rest
 }
 
-func New() *Config {
+func New() Config {
 	godotenv.Load()
 
-	return &Config{
-		//start name:return type:add
-		GRPCListen: getEnv("GRPC_LISTEN", ":8888"),
-		//start name:post_return
-		Env: getEnv("ENV", "local"),
-	}
-}
-
-func getEnv(key, fallback string) string {
-	if v := os.Getenv(key); v != "" {
-		return v
+	var cfg Config
+	err := envconfig.Process("", &cfg)
+	if err != nil {
+		slog.Error("config parse failed", "err", err)
+		os.Exit(1)
 	}
 
-	return fallback
+	return cfg
 }

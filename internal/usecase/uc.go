@@ -1,15 +1,23 @@
+// start name:top
 package usecase
 
-import "github.com/zlietapki/boilerplate/internal/domain"
+import "github.com/zlietapki/gena/internal/domain"
 
 var _ domain.IUsecase = (*Usecase)(nil) // compile-time check
 
 type Usecase struct {
-	repo domain.IRepository
+	// start name:uc_struct type:add
+	// start name:post_uc_struct
 }
 
-func New(repo domain.IRepository) *Usecase {
+type Depends struct {
+	// start name:deps type:add
+	// start name:post_deps
+}
+
+func New(deps Depends) *Usecase {
 	return &Usecase{
-		repo: repo,
+		// start name:new type:add
+		// start name:post_new
 	}
 }
