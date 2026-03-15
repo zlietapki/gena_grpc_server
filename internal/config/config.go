@@ -10,12 +10,12 @@ import (
 	"github.com/kelseyhightower/envconfig"
 )
 
-// start name:post_import
+// start name:config_struct
 type Config struct {
 	Env string `envconfig:"ENV"`
-	//start name:conf type:add
+	//start name:config_fields type:add
 	GRPCListen string `envconfig:"GRPC_LISTEN"`
-	//start name:rest
+	//start name:post_config_fields
 }
 
 func New() Config {

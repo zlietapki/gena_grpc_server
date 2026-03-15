@@ -37,6 +37,8 @@ tasks:
 
   # start name:generate
   generate:
+    deps:
+      - tools
     cmds:
       - PATH=$BIN_PATH go generate ./...
 
